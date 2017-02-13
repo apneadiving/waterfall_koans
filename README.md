@@ -1,4 +1,4 @@
-Koans for waterfall gem [https://github.com/apneadiving/waterfall]
+Koans for [waterfall gem](https://github.com/apneadiving/waterfall)
 
 - Clone the repo
 - bundle
