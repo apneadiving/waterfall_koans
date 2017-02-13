@@ -25,7 +25,7 @@ describe 'Service' do
 
   let(:service) { service_class.new(options).tap(&:call) }
 
-  it 'a waterfall doesnt flow until one chain is executed' do
+  it 'does not flow until one chain is executed' do
     expect(service_class.new({}).has_flown?).to be __
   end
 
