@@ -23,10 +23,11 @@ describe 'Chaining services' do
 
   let(:wf) { Wf.new }
 
-  it 'you dont need to call child waterfalls, just pass the instance' do
+  it 'does not require child waterfalls to be called, just pass the instance' do
     service = service_class.new
     expect(service.has_flown?).to be __
-    Wf.new.chain { service }
+    Wf.new
+      .chain { service }
     expect(service.has_flown?).to be __
   end
 
@@ -64,7 +65,8 @@ describe 'Chaining services' do
 
   context 'dammed on when_truthy statement' do
     it 'stops on dam yet passes existing data' do
-      wf.chain(local_foo: :foo, local_bar: :bar) { service_class.new(truthy_check: true) }
+      wf
+        .chain(local_foo: :foo, local_bar: :bar) { service_class.new(truthy_check: true) }
 
       expect(wf.outflow.local_foo).to eq __
       expect(wf.outflow.local_bar).to eq __
