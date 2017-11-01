@@ -36,7 +36,7 @@ describe Wf do
   end
 
   it 'can be undammed' do
-    wf.dam('error').undam
+    wf.dam('error').reverse_flow
     expect(wf.dammed?).to be __
     expect(wf.error_pool).to eq __
   end
