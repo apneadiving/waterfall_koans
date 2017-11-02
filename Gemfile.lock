@@ -22,7 +22,7 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     slop (3.6.0)
-    waterfall (1.0.4)
+    waterfall (1.2.0)
 
 PLATFORMS
   ruby
