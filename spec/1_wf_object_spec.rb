@@ -35,12 +35,6 @@ describe Wf do
     expect(wf.error_pool).to eq __
   end
 
-  it 'can be undammed' do
-    wf.dam('error').undam
-    expect(wf.dammed?).to be __
-    expect(wf.error_pool).to eq __
-  end
-
   it 'can be dammed conditionnaly (falsy)' do
     wf.when_falsy { false }
       .dam { 'error' }
@@ -70,5 +64,26 @@ describe Wf do
 
     # expect(listener).to have_received :failure
     # expect(listener).to_not have_received :failure
+  end
+
+  let(:reversable_service_class) do
+    Class.new do
+      include Waterfall
+
+      def call
+      end
+
+      def reverse_flow
+      end
+    end
+  end
+
+  it 'triggers automatically reverse_flow if parent fails' do
+    reversable_service = reversable_service_class.new
+
+    expect(reversable_service).to_receive(__)
+
+    wf.chain { reversable_service }
+      .dam("failed and expect nested flows to reverse")
   end
 end
